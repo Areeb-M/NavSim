@@ -1,8 +1,17 @@
+from .GPS import GPS
+from .Motor import Motor
 
 
 class Rover:
     def __init__(self, mass=10, rotation=0, position=None,
                  ):
+        """Initializes a Rover instance.
+
+        Keyword Arguments:
+        mass -- the mass of the rover in kilograms
+        rotation -- the initial rotation of the rover with respect to the origin in degrees
+        position -- the initial position of the rover with respect to the origin in meters
+        """
         if position is None:
             position = [0, 0]
 
@@ -28,3 +37,16 @@ class Rover:
             )
 
         self.position = list(position)
+
+        self.velocity = [0, 0]
+
+        self.parts = [
+            Motor(.25, .25),
+            Motor(.25, -.25),
+            Motor(-.25, -.25),
+            Motor(-.25, .25),
+        ]
+
+        self.sensors = [
+            GPS(0, 0)
+        ]
